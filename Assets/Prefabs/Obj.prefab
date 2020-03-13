@@ -185,8 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  timer: 2
-  mode: 0
   objColor: 
   objNumber: 
   materials:
