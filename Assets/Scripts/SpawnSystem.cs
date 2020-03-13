@@ -11,7 +11,7 @@ public class SpawnSystem : MonoBehaviour
 
     public GameObject obj;
     private GameObject activeObj;
-    public static float startSpeed = 0.1f;
+    public static float startSpeed = 3f;
     public float speedIncrease = 0.00f;
 
     public static int score;
@@ -23,9 +23,22 @@ public class SpawnSystem : MonoBehaviour
     public GameObject gameoverText;
     public bool playing;
 
+    public static float timer = 10;
+    public static float timerActual;
+
+    public static int mode = 0;
+    public Text modeText;
+
+    public HashSet<GameObject> actualObjects;
+
+    public HashSet<GameObject> colors;
+    public HashSet<GameObject> numbers;
+    public HashSet<GameObject> shapes;
+
     // Start is called before the first frame update
     void Start()
     {
+        modeText = GameObject.FindGameObjectWithTag("Mode").GetComponent<Text>();
         score = 0;
         lives = 3;
         playing = true;
@@ -35,6 +48,19 @@ public class SpawnSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timerActual -= Time.deltaTime;
+
+        if (timerActual < 0)
+        {
+            mode = (mode + 1) % 2;
+            timerActual = timer;
+        }
+
+        if (mode == 0)
+            modeText.text = "Mode: Color";
+        if (mode == 1)
+            modeText.text = "Mode: Numbers";
+
         if (lives == 0)
         {
             playing = false;
@@ -47,6 +73,7 @@ public class SpawnSystem : MonoBehaviour
         {
             activeObj = Instantiate(obj);
             activeObj.transform.position = positions[Random.Range(0, positions.Length)].transform.position;
+            UpdateBases();
         }
 
         scoreText.text = "Score: " + score.ToString();
@@ -56,5 +83,10 @@ public class SpawnSystem : MonoBehaviour
     public void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void UpdateBases()
+    {
+
     }
 }

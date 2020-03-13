@@ -1,54 +1,74 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
     static float speed;
     public Animator anim;
 
-    public float timer = 2;
-    private float timerActual;
-
-    public int mode = 0;
-
     private string[] colors = new string[]{ "Red", "Yellow", "Green", "Blue", "Purple"};
     private string[] numbers = new string[5] { "1", "2", "3", "4", "5" };
+    //private string[] numbers = new string[5] { "1", "2", "3", "4", "5" };
 
     public string objColor;
     public string objNumber;
 
-    public Color[] actualColors;
+    public Material[] materials;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         anim = GetComponent<Animator>();
-        timerActual = 2;
         objColor = colors[Random.Range(0, colors.Length)];
         objNumber = numbers[Random.Range(0, colors.Length)];
         if (objColor == "Red")
-            gameObject.GetComponent<MeshRenderer>().material.color = actualColors[0];
+            gameObject.GetComponent<MeshRenderer>().material.color = materials[0].color;
         if (objColor == "Yellow")
-            gameObject.GetComponent<MeshRenderer>().material.color = actualColors[1];
+            gameObject.GetComponent<MeshRenderer>().material.color = materials[1].color;
         if (objColor == "Green")
-            gameObject.GetComponent<MeshRenderer>().material.color = actualColors[2];
+            gameObject.GetComponent<MeshRenderer>().material.color = materials[2].color;
         if (objColor == "Blue")
-            gameObject.GetComponent<MeshRenderer>().material.color = actualColors[3];
+            gameObject.GetComponent<MeshRenderer>().material.color = materials[3].color;
         if (objColor == "Purple")
-            gameObject.GetComponent<MeshRenderer>().material.color = actualColors[4];
+            gameObject.GetComponent<MeshRenderer>().material.color = materials[4].color;
+
+        if (objNumber == "1")
+        {
+            gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "1";
+            gameObject.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "1";
+        }
+        if (objNumber == "2")
+        {
+            gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "2";
+            gameObject.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "2";
+        }
+        if (objNumber == "3")
+        {
+            gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "3";
+            gameObject.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "3";
+        }
+            
+        if (objNumber == "4")
+        {
+            gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "4";
+            gameObject.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "4";
+        }
+            
+        if (objNumber == "5")
+        {
+            gameObject.transform.GetChild(0).GetComponent<TextMesh>().text = "5";
+            gameObject.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "5";
+        }
+           
     }
 
     // Update is called once per frame
     void Update()
     {
-        timerActual -= Time.deltaTime;
-
-        if(timerActual < 0)
-        {
-            //mode = (mode + 1) % 2;
-            timerActual = timer;
-        }
+        
 
         speed = SpawnSystem.startSpeed;
         gameObject.transform.Translate(Vector3.down * speed * Time.deltaTime);
@@ -68,7 +88,7 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (mode == 0)
+        if (SpawnSystem.mode == 0)
         {
             if(other.GetComponent<BaseInfo>().color == objColor)
             {
@@ -81,7 +101,7 @@ public class Movement : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (mode == 1)
+        else if (SpawnSystem.mode == 1)
         {
             if (other.GetComponent<BaseInfo>().number == objNumber)
             {

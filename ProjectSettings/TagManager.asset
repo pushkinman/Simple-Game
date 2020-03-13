@@ -9,6 +9,7 @@ TagManager:
   - Green
   - Blue
   - Purple
+  - Mode
   layers:
   - Default
   - TransparentFX
