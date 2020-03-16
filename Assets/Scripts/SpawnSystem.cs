@@ -14,55 +14,53 @@ public class SpawnSystem : MonoBehaviour
     public static float startSpeed = 3f;
     public float speedIncrease = 0.00f;
 
-    public static int score;
-    public Text scoreText;
-
-    public static int lives;
-    public Text livesText;
-
     public GameObject gameoverText;
     public bool playing;
 
-    public static float timer = 10;
-    public static float timerActual;
-
-    public static int mode = 2;
+    public static int mode;
     public Text modeText;
 
     public int modeCountLimit = 4;
     private int modeCount;
 
+    public Player player;
+    public UIManager uIManager;
+
+    public Animator modeAnim;
+
     // Start is called before the first frame update
     void Start()
     {
         modeText = GameObject.FindGameObjectWithTag("Mode").GetComponent<Text>();
-        score = 0;
-        lives = 1;
         playing = true;
         modeCount = 0;
         gameoverText.SetActive(false);
+
+        player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>();
+        uIManager = GameObject.Find("UI").GetComponent<UIManager>();
+        modeAnim.SetTrigger("Mode");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (modeCount >= modeCountLimit)
-        //{
-        //    mode = (mode + 1) % 3;
-        //    modeCount = 0;
-        //}
+        if (modeCount >= modeCountLimit)
+        {
+            mode = (mode + 1) % 3;
+            modeCount = 0;
+            modeAnim.SetTrigger("Mode");
+        }
 
-        if (mode == 0)
-            modeText.text = "Mode: Color";
-        else if (mode == 1)
-            modeText.text = "Mode: Numbers";
-        else if (mode == 2)
-            modeText.text = "Mode: Shapes";
-
-        if (lives == 0)
+        if (player.lives == 0)
         {
             playing = false;
             gameoverText.SetActive(true);
+
+            if(player.score > player.scoreRecord)
+            {
+                player.scoreRecord = player.score;
+                player.SavePlayer();
+            }
         }
 
         startSpeed += speedIncrease;
@@ -75,9 +73,6 @@ public class SpawnSystem : MonoBehaviour
             UpdateBases();
             
         }
-
-        scoreText.text = score.ToString();
-        livesText.text = "Lives: " + lives.ToString();
     }
 
     public void Reload()

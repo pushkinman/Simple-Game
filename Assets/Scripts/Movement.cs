@@ -106,12 +106,12 @@ public class Movement : MonoBehaviour
         {
             if(other.GetComponent<BaseInfo>().color == objColor)
             {
-                SpawnSystem.score++;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>().score++;
                 Destroy(gameObject);
             }
             else
             {
-                SpawnSystem.lives--;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>().lives--;
                 Destroy(gameObject);
             }
         }
@@ -119,12 +119,12 @@ public class Movement : MonoBehaviour
         {
             if (other.GetComponent<BaseInfo>().number == objNumber)
             {
-                SpawnSystem.score++;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>().score++;
                 Destroy(gameObject);
             }
             else
             {
-                SpawnSystem.lives--;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>().lives--;
                 Destroy(gameObject);
             }
         }
@@ -133,12 +133,12 @@ public class Movement : MonoBehaviour
         {
             if (other.GetComponent<BaseInfo>().shape == objShape)
             {
-                SpawnSystem.score++;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>().score++;
                 Destroy(gameObject);
             }
             else
             {
-                SpawnSystem.lives--;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>().lives--;
                 Destroy(gameObject);
             }
         }
