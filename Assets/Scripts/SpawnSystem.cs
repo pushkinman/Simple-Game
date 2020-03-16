@@ -26,40 +26,38 @@ public class SpawnSystem : MonoBehaviour
     public static float timer = 10;
     public static float timerActual;
 
-    public static int mode = 0;
+    public static int mode = 2;
     public Text modeText;
 
-    public HashSet<GameObject> actualObjects;
-
-    public HashSet<GameObject> colors;
-    public HashSet<GameObject> numbers;
-    public HashSet<GameObject> shapes;
+    public int modeCountLimit = 4;
+    private int modeCount;
 
     // Start is called before the first frame update
     void Start()
     {
         modeText = GameObject.FindGameObjectWithTag("Mode").GetComponent<Text>();
         score = 0;
-        lives = 3;
+        lives = 1;
         playing = true;
+        modeCount = 0;
         gameoverText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timerActual -= Time.deltaTime;
-
-        if (timerActual < 0)
-        {
-            mode = (mode + 1) % 2;
-            timerActual = timer;
-        }
+        //if (modeCount >= modeCountLimit)
+        //{
+        //    mode = (mode + 1) % 3;
+        //    modeCount = 0;
+        //}
 
         if (mode == 0)
             modeText.text = "Mode: Color";
-        if (mode == 1)
+        else if (mode == 1)
             modeText.text = "Mode: Numbers";
+        else if (mode == 2)
+            modeText.text = "Mode: Shapes";
 
         if (lives == 0)
         {
@@ -73,10 +71,12 @@ public class SpawnSystem : MonoBehaviour
         {
             activeObj = Instantiate(obj);
             activeObj.transform.position = positions[Random.Range(0, positions.Length)].transform.position;
+            modeCount++;
             UpdateBases();
+            
         }
 
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = score.ToString();
         livesText.text = "Lives: " + lives.ToString();
     }
 
@@ -87,6 +87,6 @@ public class SpawnSystem : MonoBehaviour
 
     public void UpdateBases()
     {
-
+        GameObject.Find("BasesSpawnManager").GetComponent<BasesRandom>().UpdateBases();
     }
 }

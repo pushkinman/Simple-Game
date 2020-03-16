@@ -50,33 +50,30 @@ public class BasesRandom : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateBases()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //deleting previously stored active shapes
+        foreach (GameObject obj in activeShapes)
         {
-            //deleting previously stored active shapes
-            foreach (GameObject obj in activeShapes)
-            {
-                Destroy(obj);
-            }
-            activeShapes = new List<GameObject>();
-
-            //create random order of parameters in each list
-            Shuffle(shapesOrder);
-            Shuffle(colorsOrder);
-            Shuffle(numbersOrder);
-
-            //set text value for each base in "BaseInfo"
-            for (int i = 0; i < shapesOrder.Count; i++)
-            {
-                bases[i].GetComponent<BaseInfo>().shape = shapesOrder.ElementAt(i);
-                bases[i].GetComponent<BaseInfo>().color = colorsOrder.ElementAt(i);
-                bases[i].GetComponent<BaseInfo>().number = numbersOrder.ElementAt(i);
-            }
-
-            //call method to spawn prefabs
-            StartCoroutine(SpawnBases());
+            Destroy(obj);
         }
+        activeShapes = new List<GameObject>();
+
+        //create random order of parameters in each list
+        Shuffle(shapesOrder);
+        Shuffle(colorsOrder);
+        Shuffle(numbersOrder);
+
+        //set text value for each base in "BaseInfo"
+        for (int i = 0; i < shapesOrder.Count; i++)
+        {
+            bases[i].GetComponent<BaseInfo>().shape = shapesOrder.ElementAt(i);
+            bases[i].GetComponent<BaseInfo>().color = colorsOrder.ElementAt(i);
+            bases[i].GetComponent<BaseInfo>().number = numbersOrder.ElementAt(i);
+        }
+
+        //call method to spawn prefabs
+        StartCoroutine(SpawnBases());
     }
 
     //list shuffle
@@ -116,7 +113,7 @@ public class BasesRandom : MonoBehaviour
                 pref.transform.position = baseObj.transform.position;
                 pref.transform.parent = baseObj.transform;
             }
-            if (baseObjShape == "Circle")
+            else if (baseObjShape == "Circle")
             {
                 GameObject pref = Instantiate(shapesPrefabs[1]);
                 pref.transform.localScale = new Vector3(0.61f, 0.015f, 0.61f);
@@ -124,7 +121,7 @@ public class BasesRandom : MonoBehaviour
                 pref.transform.position = baseObj.transform.position;
                 pref.transform.parent = baseObj.transform;
             }
-            if (baseObjShape == "Heart")
+            else if (baseObjShape == "Heart")
             {
                 GameObject pref = Instantiate(shapesPrefabs[2]);
                 pref.transform.localScale = new Vector3(0.61f, 0.015f, 0.61f);
@@ -132,7 +129,7 @@ public class BasesRandom : MonoBehaviour
                 pref.transform.position = baseObj.transform.position;
                 pref.transform.parent = baseObj.transform;
             }
-            if (baseObjShape == "Star")
+            else if (baseObjShape == "Star")
             {
                 GameObject pref = Instantiate(shapesPrefabs[3]);
                 pref.transform.localScale = new Vector3(0.61f, 0.015f, 0.61f);
@@ -148,19 +145,19 @@ public class BasesRandom : MonoBehaviour
                     colorsPrefabs[0];
                 Debug.Log("Green");
             }
-            if (baseObjColor == "Blue")
+            else if (baseObjColor == "Blue")
             {
                 baseObj.transform.GetChild(0).GetComponent<MeshRenderer>().material =
                     colorsPrefabs[1];
                 Debug.Log("Blue");
             }
-            if (baseObjColor == "Red")
+            else if (baseObjColor == "Red")
             {
                 baseObj.transform.GetChild(0).GetComponent<MeshRenderer>().material =
                     colorsPrefabs[2];
                 Debug.Log("Red");
             }
-            if (baseObjColor == "Yellow")
+            else if (baseObjColor == "Yellow")
             {
                 baseObj.transform.GetChild(0).GetComponent<MeshRenderer>().material =
                     colorsPrefabs[3];
@@ -172,15 +169,15 @@ public class BasesRandom : MonoBehaviour
             {
                 baseObj.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "1";
             }
-            if (baseObjNumber == "2")
+            else if (baseObjNumber == "2")
             {
                 baseObj.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "2";
             }
-            if (baseObjNumber == "3")
+            else if (baseObjNumber == "3")
             {
                 baseObj.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "3";
             }
-            if (baseObjNumber == "4")
+            else if (baseObjNumber == "4")
             {
                 baseObj.transform.GetChild(0).GetChild(0).GetComponent<TextMesh>().text = "4";
             }
