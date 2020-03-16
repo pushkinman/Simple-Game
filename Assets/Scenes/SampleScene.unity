@@ -727,6 +727,7 @@ MonoBehaviour:
   modeCountLimit: 4
   player: {fileID: 0}
   uIManager: {fileID: 0}
+  modeAnim: {fileID: 1214912743}
 --- !u!4 &171157981
 Transform:
   m_ObjectHideFlags: 0
@@ -2160,6 +2161,7 @@ GameObject:
   - component: {fileID: 1214912740}
   - component: {fileID: 1214912742}
   - component: {fileID: 1214912741}
+  - component: {fileID: 1214912743}
   m_Layer: 5
   m_Name: Mode
   m_TagString: Mode
@@ -2183,7 +2185,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255, y: 1094}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
   m_SizeDelta: {x: 607.81, y: 273.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214912741
@@ -2205,13 +2207,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ad8d885deb9930947adab95395aace75, type: 3}
+    m_Font: {fileID: 12800000, guid: 0bc3f3a1eea3afb47939676c921bdec4, type: 3}
     m_FontSize: 115
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 115
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2226,6 +2228,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214912739}
   m_CullTransparentMesh: 0
+--- !u!95 &1214912743
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214912739}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d7504fa36c8fe04597cc2493a619c48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1326353041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1359547661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2398,7 +2419,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ad8d885deb9930947adab95395aace75, type: 3}
+    m_Font: {fileID: 12800000, guid: 0bc3f3a1eea3afb47939676c921bdec4, type: 3}
     m_FontSize: 115
     m_FontStyle: 0
     m_BestFit: 0
@@ -2777,7 +2798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1642455874
 RectTransform:
   m_ObjectHideFlags: 0
