@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //set all visual parameters
         scoreRecordText.text = "Best score " + player.scoreRecord.ToString();
         scoreText.text = player.score.ToString();
         livesText.text = "Lives " + player.lives.ToString();
@@ -31,5 +33,10 @@ public class UIManager : MonoBehaviour
             modeText.text = "Numbers!";
         else if (SpawnSystem.mode == 2)
             modeText.text = "Shapes!";
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

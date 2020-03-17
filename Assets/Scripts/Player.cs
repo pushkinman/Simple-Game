@@ -10,16 +10,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        //load initial parameters
         score = 0;
         lives = 1;
         LoadPlayer();
     }
-
+    
+    //method that saves info
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
     }
 
+    //method that loads info
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();

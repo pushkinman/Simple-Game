@@ -11,18 +11,21 @@ public class LevelChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if working
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FadeToLevel(0);
         }
     }
 
+    //function called on a button
     public void FadeToLevel (int levelIndex)
     {
         levelToLoad = levelIndex;
         anim.SetTrigger("FadeOut");
     }
 
+    //when animation comletes an event is called in a timeline
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(levelToLoad);
